@@ -1,4 +1,5 @@
-import pytest
+#import pytest
+import math
 from all_questions import *
 import pickle
 
@@ -27,38 +28,46 @@ def question2():
     answers = {}
 
     # type: bool
-    answers['(a) A'] = None
+    answers['(a) A'] = True
 
     # type: bool
-    answers['(a) B'] = None
+    answers['(a) B'] = False
 
     # type: bool
-    answers['(a) C'] = None
+    answers['(a) C'] = False
 
     # type: bool
-    answers['(a) D'] = None
+    answers['(a) D'] = True
 
     # type: bool
-    answers['(b) A'] = None
+    answers['(b) A'] = False#*****
 
     # type: False
-    answers['(b) B'] = None
+    answers['(b) B'] = False
 
     # type: bool
-    answers['(b) C'] = None
+    answers['(b) C'] = True
 
     # type: bool
-    answers['(b) D'] = None
+    answers['(b) D'] = False #A focus on reducing bias leads to reducing UNDERFITTING, not overfitting. Overfitting is the result of high variance.
 
     # type: eval_float
     # The formulas should only use the variable 'p'. The formulas should be
     # a valid Python expression. Use the functions in the math module as
     # required.
-    answers['(c) Weight update'] = None
+
+    error = 0.3
+    alpha = (.5)*(math.log((1-error)/error))
+
+    answers['(c) Weight update'] = alpha
 
     # type: float
     # the answer should be correct to 3 significant digits
-    answers['(d) Weight influence'] = None
+
+    original_weight = 1
+    new_weight = (original_weight)*(math.exp(alpha))
+
+    answers['(d) Weight influence'] = new_weight
     return answers
 
 
@@ -67,10 +76,10 @@ def question3():
     answers = {}
 
     # type: string
-    answers['Agree?'] = None
+    answers['Agree?'] = "No"
 
     # type: explain_string
-    answers['Explain'] = None
+    answers['Explain'] = "The base classifiers he is using (flipping a coin 1000 times) have individual error rates of 0.5 (theoretically). Since the base classifiers are random guessing, he will not attain good results using ensemble methods due to the fact that the base classifiers are not leading him to convergence of a specific class after incorporating boosting or bagging."
     return answers
 
 
@@ -79,13 +88,13 @@ def question4():
     answers = {}
 
     # type: bool
-    answers['(a) e=0.5, independent'] = None
+    answers['(a) e=0.5, independent'] = False
 
     # type: bool
-    answers['(b), independent'] = None
+    answers['(b), independent'] = True
 
     # type: bool
-    answers['(c) identical'] = None
+    answers['(c) identical'] = False
     return answers
 
 
@@ -95,19 +104,19 @@ def question5():
 
     # type: string
     # choices: ['i', 'ii', 'iii', 'iv']
-    answers['(a)'] = None
+    answers['(a)'] = 'iii'
 
     # type: string
     # choices: ['i', 'ii', 'iii', 'iv']
-    answers['(b)'] = None
+    answers['(b)'] = 'ii'
 
     # type: string
     # choices: ['i', 'ii', 'iii', 'iv']
-    answers['(c)'] = None
+    answers['(c)'] = 'i'
 
     # type: string
     # choices: ['i', 'ii', 'iii', 'iv']
-    answers['(d)'] = None
+    answers['(d)'] = 'iv'
     return answers
 
 
@@ -116,28 +125,28 @@ def question6():
     answers = {}
 
     # type: eval_float
-    answers['(a) C1-TPR'] = None
+    answers['(a) C1-TPR'] = "(100*p)/100"
 
     # type: eval_float
-    answers['(a) C2-TPR'] = None
+    answers['(a) C2-TPR'] = '(100*2*p)/100'
 
     # type: eval_float
-    answers['(a) C1-FPR'] = None
+    answers['(a) C1-FPR'] = '(900*p)/900'
 
     # type: eval_float
-    answers['(a) C2-FPR'] = None
+    answers['(a) C2-FPR'] = '(900*2*p)/900'
 
     # type: string
     # Hint: The random guess line in an ROC curve corresponds to TPR=FPR.
     # choices: ['yes', 'no']
-    answers['(b) C2 better classifier than C1?'] = None
+    answers['(b) C2 better classifier than C1?'] = "no"
 
     # type: explain_string
-    answers['(b) C2 better classifier than C1? Explain'] = None
+    answers['(b) C2 better classifier than C1? Explain'] = "C1 has a lower true positive rate than C2. However C1 has a lower false positive rate than C2. Based on this, we cannot say that one model is better than the other without knowing what the model is estimating."
 
     # type: string
     # choices: ['TPR/FPR', 'precision/recall']
-    answers['(c) Which metric?'] = None
+    answers['(c) Which metric?'] = 'precision/recall'
 
     # type: explain_string
     answers['(c) explain'] = None
@@ -255,3 +264,4 @@ if __name__ == '__main__':
 
     with open('answers.pkl', 'wb') as f:
         pickle.dump(answers_dict, f)
+
