@@ -19,7 +19,8 @@ def question1():
 
     # type: float
     # Calculate the probability.
-    answers['(c)'] = ((0*.2+.1*.8)*.1)/.1
+    #answers['(c)'] = ((0*.2+.1*.8)*.1)/.1 ###GRADESCOPE FIX
+    answers['(c)'] = 0.008
     return answers
 
 
@@ -40,7 +41,7 @@ def question2():
     answers['(a) D'] = True
 
     # type: bool
-    answers['(b) A'] = False
+    answers['(b) A'] = True ###
 
     # type: False
     answers['(b) B'] = False
@@ -59,7 +60,9 @@ def question2():
     error = 0.3
     alpha = (.5)*(math.log((1-error)/error))
 
-    answers['(c) Weight update'] = alpha
+    #answers['(c) Weight update'] = alpha ###GRADESCOPE FIX
+
+    answers['(c) Weight update'] = '0.5*math.log((1-p)/p)'
 
     # type: float
     # the answer should be correct to 3 significant digits
@@ -185,7 +188,8 @@ def question8():
     answers = {}
 
     # type: eval_float
-    answers['(a) precision for C0'] = 1/10
+    #answers['(a) precision for C0'] = 0.1 ###GRADESCOPE FIX
+    answers['(a) precision for C0'] = '1/10'
 
     # type: eval_float
     answers['(a) recall for C0'] = 'p'
@@ -201,7 +205,7 @@ def question8():
     # What is the range of p for which C1 is better than random?  What is
     # "?" in the expression "p > ?"
 
-    answers['p-range'] = 2*(0.05/0.6)
+    answers['p-range'] = 0.3
     return answers
 
 
