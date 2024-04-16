@@ -11,15 +11,15 @@ def question1():
 
     # type: float
     # Calculate the probability.
-    answers['(a)'] = None
+    answers['(a)'] = .9*.2*.8*.2
 
     # type: float
     # Calculate the probability.
-    answers['(b)'] = None
+    answers['(b)'] = .1*.2*.1*1
 
     # type: float
     # Calculate the probability.
-    answers['(c)'] = None
+    answers['(c)'] = ((0*.2+.1*.8)*.1)/.1
     return answers
 
 
@@ -40,7 +40,7 @@ def question2():
     answers['(a) D'] = True
 
     # type: bool
-    answers['(b) A'] = False#*****
+    answers['(b) A'] = False
 
     # type: False
     answers['(b) B'] = False
@@ -125,16 +125,16 @@ def question6():
     answers = {}
 
     # type: eval_float
-    answers['(a) C1-TPR'] = "(100*p)/100"
+    answers['(a) C1-TPR'] = "p"
 
     # type: eval_float
-    answers['(a) C2-TPR'] = '(100*2*p)/100'
+    answers['(a) C2-TPR'] = '2*p'
 
     # type: eval_float
-    answers['(a) C1-FPR'] = '(900*p)/900'
+    answers['(a) C1-FPR'] = 'p'
 
     # type: eval_float
-    answers['(a) C2-FPR'] = '(900*2*p)/900'
+    answers['(a) C2-FPR'] = '2*p'
 
     # type: string
     # Hint: The random guess line in an ROC curve corresponds to TPR=FPR.
@@ -149,7 +149,7 @@ def question6():
     answers['(c) Which metric?'] = 'precision/recall'
 
     # type: explain_string
-    answers['(c) explain'] = None
+    answers['(c) explain'] = 'TPR/FPR is the same for both classifiers and does not give us much information. We should use precision/recall because the values are different for each classifier.'
     return answers
 
 
@@ -159,24 +159,24 @@ def question7():
 
     # type: string
     # choices: ['C1', 'C2', 'None']
-    answers['(i) Best classifier?'] = None
+    answers['(i) Best classifier?'] = 'C1'
 
     # type: explain_string
-    answers['(i) Best classifier, explain'] = None
+    answers['(i) Best classifier, explain'] = 'C2 is equally bad at predicting the negative and positive classes, whereas C1 is well at predicting the negative class. We also do not get much information from C2 because it is splitting the data 50/50 for each class.'
 
     # type: string
     # choices: ['TPR-FPR', 'precision-recall-F1-Measure']
-    answers['(ii) appropriate metric pair'] = None
+    answers['(ii) appropriate metric pair'] = 'TPR-FPR'
 
     # type: explain_string
-    answers['(ii) appropriate metric pair, explain'] = None
+    answers['(ii) appropriate metric pair, explain'] = 'Using TPR and FPR we can see we get a value of 0.5 for each metric in C2 but get a value of 0.1 for each metric in C1. This shows that C1 is bad at predicting positives but is good at predicting negatives. C2 shows that the data is being randomly assigned. Precision, recall, and F1 are higher for C2, but are not showing how C2 is getting its results.'
 
     # type: string
     # choices: ['C1', 'C2', 'C3']
-    answers['(iii) preferred classifier?'] = None
+    answers['(iii) preferred classifier?'] = 'C3'
 
     # type: explain_string
-    answers['(iii) best classifier, explain'] = None
+    answers['(iii) best classifier, explain'] = 'C3 is comparable to C1, except it was better at correctly classifying the positive class. Therefore, I would prefer C3.'
     return answers
 
 
@@ -185,23 +185,23 @@ def question8():
     answers = {}
 
     # type: eval_float
-    answers['(a) precision for C0'] = None
+    answers['(a) precision for C0'] = 1/10
 
     # type: eval_float
-    answers['(a) recall for C0'] = None
+    answers['(a) recall for C0'] = 'p'
 
     # type: eval_float
-    answers['(b) F-measure of C0'] = None
+    answers['(b) F-measure of C0'] = '(2*p)/((10*p)+1)'
 
     # type: string
     # choices: ['yes', 'no', 'unknown']
-    answers['C1 better than random?'] = None
+    answers['C1 better than random?'] = 'no'
 
     # type: float
     # What is the range of p for which C1 is better than random?  What is
     # "?" in the expression "p > ?"
 
-    answers['p-range'] = None
+    answers['p-range'] = 2*(0.05/0.6)
     return answers
 
 
@@ -211,18 +211,23 @@ def question9():
 
     # type: dict[string,float]
     # keys: ['recall', 'precision', 'F-measure', 'accuracy']
-    answers['(i) metrics'] = None
+    answers['(i) metrics'] = {
+        'recall': 80/(80+50),
+        'precision': 80/(80+70),
+        'F-measure': 160/(160+70+50),
+        'accuracy': 880/1000
+    }
 
     # type: string
     # choices: ['recall', 'precision', 'F-measure', 'accuracy']
-    answers['(i) best metric?'] = None
+    answers['(i) best metric?'] = 'F-measure'
 
     # type: string
     # choices: ['recall', 'precision', 'F-measure', 'accuracy']
-    answers['(i) worst metric?'] = None
+    answers['(i) worst metric?'] = 'accuracy'
 
     # type: explain_string
-    answers['(ii) Explain your choices of best and worst metrics'] = None
+    answers['(ii) Explain your choices of best and worst metrics'] = 'This classifier is good at classifying the negative class, but bad at classifying the positive class, so using accuracy is bad because our accuracy is being skewed by the amount of values of the negative class, and not properly showing the errors in classifying the positive class, hence why it is the worst metric. The best metric is F-measure because it is taking in to account the false negatives as well as the false positives. Using missclassifications from both classes helps to see how the model works on all classes it works with and is the best metruc..'
     return answers
 
 
@@ -232,21 +237,21 @@ def question10():
 
     # type: string
     # choices: ['T1', 'T2']
-    answers['(a) better test based on F-measure?'] = None
+    answers['(a) better test based on F-measure?'] = 'T1'
 
     # type: string
     # choices: ['T1', 'T2']
-    answers['(b) better test based on TPR/FPR?'] = None
+    answers['(b) better test based on TPR/FPR?'] = 'T2'
 
     # type: string
     # choices: ['F1', 'TPR/FPR']
-    answers['(c) Which evaluation measure to use between the two tests?'] = None
+    answers['(c) Which evaluation measure to use between the two tests?'] = 'F1'
 
     # type: explain_string
-    answers['(c) Which evaluation measure? Explain'] = None
+    answers['(c) Which evaluation measure? Explain'] = 'Our test is dealing with cancer detection, therefore we want to focus on our test not identifying people with cancer as being cancer-free. Also, our classes are very imbalanced. Using F1, we can combine precision and recall to get a good sense of how our test identifies smaller classes even when among a larger class.'
 
     # type: explain_string
-    answers['(d) Example scenario where you would reverse choise in (c)'] = None
+    answers['(d) Example scenario where you would reverse choise in (c)'] = 'An example scenario in which I would reverse my choice and prefer TPR/FPR over F measure is a scenario in which our classes are well balanced and we equally want to prevent missclassifications for the positive and negative classes.'
     return answers
 #-----------------------------------------------------------
 if __name__ == '__main__':
@@ -265,3 +270,4 @@ if __name__ == '__main__':
     with open('answers.pkl', 'wb') as f:
         pickle.dump(answers_dict, f)
 
+print(question1())
