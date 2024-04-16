@@ -128,7 +128,7 @@ def question6():
     answers = {}
 
     # type: eval_float
-    answers['(a) C1-TPR'] = "(100*p)/100"
+    answers['(a) C1-TPR'] = "p"
 
     # type: eval_float
     answers['(a) C2-TPR'] = '2*p'
